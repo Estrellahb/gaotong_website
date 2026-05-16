@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>高瞳县政务信息公开平台</title>
+  <link rel="stylesheet" href="style.css?v=20260516-3" />
+</head>
+<body data-page="portal">
+  <a class="skip-link" href="#mainContent">跳转到主要内容</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div>欢迎访问高瞳县政务信息公开平台</div>
+      <div class="top-links">
+        <span>无障碍</span>
+        <span>|</span>
+        <span>繁体</span>
+        <span>|</span>
+        <span>站点地图</span>
+        <span>|</span>
+        <button id="logoutBtn" class="top-link-btn" type="button">退出登录</button>
+      </div>
+    </div>
+  </header>
+
+  <header class="site-header">
+    <div class="container brand-row">
+      <div class="brand-block">
+        <div class="seal">政务</div>
+        <div>
+          <div class="site-title">高瞳县政务信息公开平台</div>
+          <div class="site-subtitle">Government Affairs Information Portal</div>
+        </div>
+      </div>
+      <div class="search-block">
+        <input id="searchInput" type="text" placeholder="请输入标题、编号或关键词检索" />
+        <button id="searchBtn">搜索</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="container nav-list">
+      <button class="nav-btn active" data-tab="home">首页</button>
+      <button class="nav-btn" data-tab="notices">通知公告</button>
+      <button class="nav-btn" data-tab="documents">公开文件</button>
+      <button class="nav-btn" data-tab="archives">档案检索</button>
+      <button class="nav-btn" data-tab="detail">文件正文</button>
+    </div>
+  </nav>
+
+  <main id="mainContent" class="container main-layout">
+    <section id="home" class="tab-panel active">
+      <div class="hero-card">
+        <div>
+          <div class="hero-tag">政务公开 / 信息服务</div>
+          <h1>欢迎来到高瞳县</h1>
+          <p>坚持公开透明、依法行政、便民高效，持续提升政务公开和政府服务水平。</p>
+        </div>
+        <div class="hero-actions">
+          <button class="primary" data-go="documents">查看文件</button>
+          <button class="ghost" data-go="detail">查看示例正文</button>
+        </div>
+      </div>
+
+      <div class="home-grid">
+        <div class="panel">
+          <div class="panel-title">通知公告</div>
+          <ul id="homeNotices" class="notice-list"></ul>
+        </div>
+        <div class="panel">
+          <div class="panel-title">公开文件</div>
+          <ul id="homeDocs" class="notice-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="notices" class="tab-panel">
+      <div class="panel full-panel">
+        <div class="section-head">
+          <div class="panel-title">通知公告</div>
+          <div class="filters">
+            <select id="noticeDeptFilter">
+              <option value="">全部单位</option>
+            </select>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>标题</th>
+              <th>发文单位</th>
+              <th>发布日期</th>
+            </tr>
+          </thead>
+          <tbody id="noticeTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="documents" class="tab-panel">
+      <div class="panel full-panel">
+        <div class="section-head">
+          <div class="panel-title">公开文件</div>
+          <div class="filters multi">
+            <select id="docTypeFilter">
+              <option value="">全部类型</option>
+            </select>
+            <select id="docDeptFilter">
+              <option value="">全部单位</option>
+            </select>
+            <select id="docLevelFilter">
+              <option value="">全部密级</option>
+            </select>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>文号</th>
+              <th>标题</th>
+              <th>类型</th>
+              <th>发文单位</th>
+              <th>发布日期</th>
+              <th>密级</th>
+            </tr>
+          </thead>
+          <tbody id="docTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="archives" class="tab-panel">
+      <div class="panel full-panel">
+        <div class="panel-title">档案检索</div>
+        <div class="archive-search-box">
+          <div class="field">
+            <label>关键词</label>
+            <input id="archiveKeyword" type="text" placeholder="输入案件、人名、地点、编号" />
+          </div>
+          <div class="field">
+            <label>发文单位</label>
+            <select id="archiveDeptFilter">
+              <option value="">全部单位</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>文件类型</label>
+            <select id="archiveTypeFilter">
+              <option value="">全部类型</option>
+            </select>
+          </div>
+          <div class="field action-field">
+            <button id="archiveSearchBtn" class="primary">检索</button>
+          </div>
+        </div>
+        <div id="archiveResults" class="archive-results"></div>
+      </div>
+    </section>
+
+    <section id="detail" class="tab-panel">
+      <article class="doc-detail panel full-panel">
+        <div class="doc-meta-top">
+          <div class="doc-type-badge" id="detailTypeBadge">内部通报</div>
+          <div class="doc-number" id="detailNumber">高政办〔2006〕12号</div>
+        </div>
+        <h2 id="detailTitle" class="doc-title">关于进一步加强汛期安全巡查工作的通知</h2>
+        <div class="doc-meta-grid">
+          <div><strong>发文单位：</strong><span id="detailDept"></span></div>
+          <div><strong>发布日期：</strong><span id="detailDate"></span></div>
+          <div><strong>密级：</strong><span id="detailLevel"></span></div>
+          <div><strong>主题词：</strong><span id="detailKeywords"></span></div>
+        </div>
+        <div id="detailBody" class="doc-body"></div>
+        <div class="attachment-box">
+          <div class="attachment-title">附件说明</div>
+          <ul id="detailAttachments"></ul>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>主办：高瞳县人民政府办公室</div>
+      <div>承办：高瞳县政务公开服务中心</div>
+    </div>
+  </footer>
+
+  <script src="app.js?v=20260516-3"></script>
+</body>
+</html>
