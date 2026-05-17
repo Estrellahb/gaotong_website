@@ -12,7 +12,7 @@ const documents = [
   {
     number: "高政办〔2006〕12号",
     title: "关于进一步加强汛期安全巡查工作的通知",
-    type: "通知",
+    type: "通知公告",
     dept: "县政府办公室",
     date: "2006-07-28",
     level: "内部通报",
@@ -42,7 +42,7 @@ const documents = [
   {
     number: "高教字〔2006〕18号",
     title: "关于规范中小学校园安全管理工作的通告",
-    type: "通告",
+    type: "通知公告",
     dept: "县教育局",
     date: "2005-09-03",
     level: "主动公开",
@@ -57,7 +57,7 @@ const documents = [
   {
     number: "高民政〔2006〕9号",
     title: "关于做好城乡困难群众临时救助工作的通知",
-    type: "通知",
+    type: "通知公告",
     dept: "县民政局",
     date: "2006-01-15",
     level: "主动公开",
@@ -87,7 +87,7 @@ const documents = [
   {
     number: "高自然资〔2005〕6号",
     title: "关于规范建设用地审批档案归集工作的通知",
-    type: "通知",
+    type: "通知公告",
     dept: "县自然资源局",
     date: "2005-02-26",
     level: "主动公开",
@@ -123,7 +123,7 @@ const documents = [
     type: "内部通报",
     dept: "高瞳县公安局刑侦大队",
     date: "2006-08-14",
-    level: "内部",
+    level: "内部通报",
     keywords: ["失踪", "排查", "内部通报"],
     attachments: ["附件：重点询问对象名单"],
     body: [
@@ -155,7 +155,7 @@ const documents = [
     type: "公告",
     dept: "高瞳县教育事务管理处",
     date: "2006-06-12",
-    level: "公开",
+    level: "主动公开",
     keywords: ["教学安排", "宿舍", "公告"],
     attachments: ["附表：地点示意图", "附表：问询摘要"],
     body: [
@@ -171,7 +171,7 @@ const documents = [
     type: "会议纪要",
     dept: "高瞳地区综合治理办公室",
     date: "2006-08-13",
-    level: "内部",
+    level: "内部通报",
     keywords: ["会议", "联席", "综合治理"],
     attachments: ["附件：参会名单"],
     body: [
@@ -186,7 +186,7 @@ const documents = [
     type: "项目建设",
     dept: "高瞳县发展计划局",
     date: "2001-05-10",
-    level: "内部",
+    level: "内部通报",
     keywords: ["后河村水库", "方山", "山洪灾害", ],
     attachments: ["附件：招投标文件","附件：工程计划安排","附件：工程量调整及追加工程签证单","附件：竣工验收报告"],
     body: [
@@ -200,7 +200,7 @@ const documents = [
     type: "通知公告",
     dept: "高瞳地区政务办公室",
     date: "2006-08-13",
-    level: "公开",
+    level: "主动公开",
     keywords: ["会议", "安全生产"],
     attachments:["附件：无"],
     body: [
@@ -218,7 +218,7 @@ const documents = [
     type:  "通知公告",
     dept: "遂山市交通局、公安局交警大队",
     date: "2006-08-12",
-    level: "公开",
+    level: "主动公开",
     keywords: ["交通管制", "暴雨"],
     attachments:["附件：无"],
     body: [
