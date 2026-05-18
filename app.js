@@ -5,7 +5,8 @@ const LOGIN_USERS = [
   { username: "jsc", password: "83170510" },
   { username: "wl", password: "police2006" },
   { username: "jjc", password: "rescue2000" },
-  { username: "gtzf", password: "zf123" }
+  { username: "gtzf", password: "zf123" },
+  { username: "admin", password: "admin" }
 ];
 
 const documents = [
@@ -307,6 +308,7 @@ function currentPageType() {
 function goToPage(page) {
   window.location.href = new URL(page, window.location.href).href;
 }
+
 
 function isLoginPage() {
   if (currentPageType() === "login") {
@@ -648,7 +650,11 @@ function initLoginPage() {
 
     if (matchedUser) {
       storage.setItem(AUTH_KEY, "ok");
-      goToPage(PORTAL_PAGE);
+      if (matchedUser.username === "admin") {
+        goToPage("/admin/");
+      } else {
+        goToPage(`/${matchedUser.username}/`);
+      }
       return;
     }
 
