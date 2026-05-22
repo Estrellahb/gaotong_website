@@ -4,7 +4,7 @@
 
 window.GaotongVisibilityRules = {
   "主动公开": ["*"],
-  "内部公开": ["gtzf", "jjc", "jsc", "wl"],
+  "内部公开": ["jjc", "jsc", "wl"],
   "内部通报": ["gtzf", "jjc", "jsc", "wl"],
   "依申请公开": ["gtzf","jjc", "jsc", "wl"],
   "机密": ["jjc", "jsc"]
