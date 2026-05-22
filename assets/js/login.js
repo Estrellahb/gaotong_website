@@ -23,7 +23,7 @@
 
       if (matchedUser) {
         auth.signIn(matchedUser);
-        auth.goToPage(auth.getUserTarget(matchedUser.username));
+        auth.goToPage(auth.getUserTarget());
         return;
       }
 

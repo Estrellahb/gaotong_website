@@ -108,6 +108,10 @@ a {
   color: rgba(255, 247, 246, 0.92);
 }
 
+.current-user {
+  color: rgba(255, 247, 246, 0.96);
+}
+
 .top-link-btn {
   padding: 0;
   color: inherit;

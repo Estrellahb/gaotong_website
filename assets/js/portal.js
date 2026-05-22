@@ -31,8 +31,20 @@ function isPortalPage() {
 }
 
 // 数据读取与筛选：基于 app.js 中的 documents、notices、state 生成当前页面需要展示的数据。
+function canViewDocument(doc) {
+  const rules = window.GaotongVisibilityRules || {};
+  const allowedUsers = rules[doc.level] || [];
+  const currentUser = window.GaotongAuth.getCurrentUser();
+  return allowedUsers.includes("*") || allowedUsers.includes(currentUser);
+}
+
+function getVisibleDocuments() {
+  return documents.filter(canViewDocument);
+}
+
 function getSelectedDoc() {
-  return documents.find((doc) => doc.number === state.selectedDocNumber) || documents[0];
+  const visibleDocuments = getVisibleDocuments();
+  return visibleDocuments.find((doc) => doc.number === state.selectedDocNumber) || visibleDocuments[0];
 }
 
 function getUniqueValues(list, key) {
@@ -55,7 +67,7 @@ function getFilteredNotices() {
 }
 
 function getFilteredDocuments() {
-  return documents.filter((doc) => {
+  return getVisibleDocuments().filter((doc) => {
     const keywordMatch = includesKeyword(
       [doc.number, doc.title, doc.type, doc.dept, doc.level, doc.keywords.join(" "), doc.body.join(" ")],
       state.keyword
@@ -163,6 +175,19 @@ function renderDocuments() {
 }
 
 function renderDetail(doc) {
+  if (!doc) {
+    byId("detailTypeBadge").textContent = "--";
+    byId("detailNumber").textContent = "--";
+    byId("detailTitle").textContent = "暂无可查看文件";
+    byId("detailDept").textContent = "--";
+    byId("detailDate").textContent = "--";
+    byId("detailLevel").textContent = "--";
+    byId("detailKeywords").textContent = "--";
+    byId("detailBody").innerHTML = `<p>当前账号暂无可查看文件。</p>`;
+    byId("detailAttachments").innerHTML = "";
+    return;
+  }
+
   byId("detailTypeBadge").textContent = doc.level;
   byId("detailNumber").textContent = doc.number;
   byId("detailTitle").textContent = doc.title;
@@ -179,7 +204,7 @@ function renderArchiveResults() {
   const dept = byId("archiveDeptFilter").value;
   const type = byId("archiveTypeFilter").value;
 
-  const results = documents.filter((doc) => {
+  const results = getVisibleDocuments().filter((doc) => {
     const keywordMatch = includesKeyword(
       [doc.number, doc.title, doc.dept, doc.type, doc.keywords.join(" "), doc.body.join(" ")],
       keyword
@@ -208,9 +233,10 @@ function renderArchiveResults() {
 
 function populateFilters() {
   const noticeDepts = getUniqueValues(notices, "dept");
-  const docTypes = getUniqueValues(documents, "type");
-  const docDepts = getUniqueValues(documents, "dept");
-  const docLevels = getUniqueValues(documents, "level");
+  const visibleDocuments = getVisibleDocuments();
+  const docTypes = getUniqueValues(visibleDocuments, "type");
+  const docDepts = getUniqueValues(visibleDocuments, "dept");
+  const docLevels = getUniqueValues(visibleDocuments, "level");
 
   byId("noticeDeptFilter").innerHTML =
     `<option value="">全部单位</option>` +
@@ -247,8 +273,15 @@ function rerenderAll() {
 }
 
 function openDocument(docNumber) {
+  const doc = getVisibleDocuments().find((item) => item.number === docNumber);
+
+  if (!doc) {
+    window.alert("当前账号无权查看该文件。");
+    return;
+  }
+
   state.selectedDocNumber = docNumber;
-  renderDetail(getSelectedDoc());
+  renderDetail(doc);
   activateTab("detail");
 }
 
@@ -266,6 +299,8 @@ function initPortalPage() {
     goToPage(LOGIN_PAGE);
     return;
   }
+
+  byId("currentUsername").textContent = `当前用户：${window.GaotongAuth.getCurrentUser() || "访客"}`;
 
   populateFilters();
   rerenderAll();

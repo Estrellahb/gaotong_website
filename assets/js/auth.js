@@ -25,8 +25,8 @@
     window.location.href = new URL(page, window.location.href).href;
   }
 
-  function getUserTarget(username) {
-    return username === "admin" ? "/admin/" : `/${username}/`;
+  function getUserTarget() {
+    return "/";
   }
 
   function findUser(username, password) {
