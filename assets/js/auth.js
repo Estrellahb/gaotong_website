@@ -6,7 +6,7 @@
     { username: "jsc", password: "83170510" },
     { username: "wl", password: "police2006" },
     { username: "jjc", password: "rescue2000" },
-    { username: "gtzf", password: "zf123" },
+    { username: "gtzf", password: "zf1234" },
     { username: "admin", password: "admin" }
   ];
 
